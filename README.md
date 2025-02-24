@@ -20,7 +20,14 @@ You can install the required packages using pip:
 ```bash
 pip install streamlit requests
 ```
-Cloning the Repository
+## Getting the API Key
+To use the Gemini AI API, you need an API key. Follow these steps to obtain your API key:
+- **Sign Up for an Account:** Go to the [AiStudio.Google.Com](https://aistudio.google.com/apikey) and sign up for an account if you don't already have one.
+- **Create a Project:** After logging in, navigate to the dashboard and create a new project. This project will be associated with your API key.
+- **Generate an API Key:** Once your project is created, look for an option to generate an API key. Follow the prompts to create your key. Make sure to copy it, as you will need it for your application.
+- **Store Your API Key Securely:** Keep your API key private and do not share it publicly. You will use it in your application through Streamlit's secrets management.
+
+## Cloning the Repository
 To clone this repository and use it as your own, follow these steps:
 
 - Open your terminal (Command Prompt, PowerShell, or any terminal emulator).
@@ -30,14 +37,14 @@ To clone this repository and use it as your own, follow these steps:
 - Run the following command to clone the repository:
 
 ```bash
-git clone https://github.com/your_username/chatbot-gemini-ai.git
+git clone https://github.com/vaibhavxom/Streamlit_chatbot.git
 ```
 Replace your_username with your GitHub username and chatbot-gemini-ai with the actual repository name.
 
 Navigate into the cloned directory:
 
 ```bash
-cd chatbot-gemini-ai
+cd Streamlit_chatbot
 ```
 Set up your API key using Streamlit's secrets management (see below).
 
@@ -46,8 +53,8 @@ To use the Gemini AI API, you need an API key. Follow these steps to set up your
 
 ## How to Use Secrets Management
 
-- Create a .streamlit directory in the root of your project if it doesn't already exist.
-- Create a secrets.toml file inside the .streamlit directory. This file will store your API key securely. The structure of the file should look like this:
+- Create a ``.streamlit`` directory in the root of your project if it doesn't already exist.
+- Create a ``secrets.toml`` file inside the .streamlit directory. This file will store your API key securely. The structure of the file should look like this:
 ```toml
 [general]
 API_KEY = "your_actual_api_key_here"
@@ -55,14 +62,14 @@ API_KEY = "your_actual_api_key_here"
 
 Replace your_actual_api_key_here with your actual API key.
 
-- Access the API key in your code using st.secrets["general"]["API_KEY"].
+- Access the API key in your code using ``st.secrets["general"]["API_KEY"]``.
 - This allows you to keep your API key private and not hard-coded in your source code.
 
 ## Running the Chatbot
 To run the chatbot, navigate to the project directory in your terminal and execute the following command:
 
 ```bash
-streamlit run your_script_name.py
+streamlit run main.py
 ```
 Replace your_script_name.py with the name of your Python file containing the chatbot code.
 
@@ -79,3 +86,6 @@ You can customize the appearance of the chatbot by modifying the CSS styles in t
 streamlit run your_script_name.py
 ```
 Replace your_script_name.py with the name of your Python file containing the chatbot code.
+
+## Live Demo
+You can try out the live demo of the chatbot here: [Live Demo](https://rushimithagare-chatbot.streamlit.app/)
