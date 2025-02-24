@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 # API details
-API_KEY = 'AIzaSyBPi0iUuj0qaumCTy-B37BAmKCgjQeedXg'  # Replace with your actual API key
+API_KEY = st.secrets["general"]["API_KEY"]  # Replace with your actual API key
 API_URL = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}'  # Correct endpoint URL for Gemini
 
 # Function to interact with Gemini API
