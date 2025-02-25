@@ -41,7 +41,7 @@ def get_gemini_response(message):
 # Streamlit UI
 def chatbot():
     st.title("Chatbot with Gemini AI")
-    
+
     # Apply custom CSS styles to improve UI appearance
     st.markdown("""
         <style>
@@ -49,6 +49,8 @@ def chatbot():
                 font-family: 'Arial', sans-serif;
                 background-color: #f4f4f4;
                 color: #333;
+                margin: 0;
+                padding: 0;
             }
             .message-box {
                 padding: 12px 18px;
@@ -64,18 +66,22 @@ def chatbot():
                 background-color: #4CAF50;
                 color: white;
                 text-align: left;
-                margin-left: 10px;
+                margin-left: auto;
             }
             .bot-message {
                 background-color: #9E9E9E;
                 color: white;
                 text-align: justify;
-                margin-right: 10px;
+                margin-right: auto;
             }
             .chat-container {
                 max-height: 400px;
                 overflow-y: auto;
                 margin-bottom: 15px;
+                padding: 10px;
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             }
             .stTextInput>div>input {
                 border-radius: 20px;
@@ -101,6 +107,17 @@ def chatbot():
             .stButton>button:focus {
                 outline: none;
             }
+            @media (max-width: 600px) {
+                .message-box {
+                    font-size: 14px;
+                }
+                .stTextInput>div>input {
+                    font-size: 14px;
+                }
+                .stButton>button {
+                    font-size: 14px;
+                }
+            }
         </style>
     """, unsafe_allow_html=True)
 
@@ -111,7 +128,7 @@ def chatbot():
     # Display past messages in the chat container
     st.markdown('<div class="chat-container">', unsafe_allow_html=True)
     for msg in st.session_state.messages:
-        if msg.startswith("User:"):
+        if msg.startswith(":User "):
             st.markdown(f'<div class="message-box user-message">{msg}</div>', unsafe_allow_html=True)
         else:
             st.markdown(f'<div class="message-box bot-message">{msg}</div>', unsafe_allow_html=True)
@@ -122,12 +139,12 @@ def chatbot():
         user_message = st.session_state.user_input
         if user_message:
             # Append the user's message to the session state for immediate display
-            st.session_state.messages.append(f"User: {user_message}")
-            
+            st.session_state.messages.append(f":User  {user_message}")
+
             # Show loading spinner while waiting for the response
             with st.spinner("Bot is thinking..."):
                 response = get_gemini_response(user_message)
-            
+
             # Append bot's response to the session state for immediate display
             st.session_state.messages.append(f"Bot: {response}")
 
