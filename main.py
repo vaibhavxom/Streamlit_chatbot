@@ -5,7 +5,8 @@ import requests
 API_KEY = st.secrets["general"]["API_KEY"]  # Replace with your actual API key
 API_URL = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}'  # Correct endpoint URL for Gemini
 
-# Function to interact with Gemini API
+# Function to interact with Gemini API with caching
+@st.cache_data
 def get_gemini_response(message):
     headers = {
         'Content-Type': 'application/json',
@@ -23,19 +24,13 @@ def get_gemini_response(message):
 
     # Check for successful response
     if response.status_code == 200:
-        # Extract and return the response
         response_data = response.json()
-
-        # Access the 'candidates' and 'content' fields
         try:
             bot_response = response_data['candidates'][0]['content']['parts'][0]['text']
             return bot_response
         except KeyError:
             return "Sorry, something went wrong."
     else:
-        # Print detailed response for debugging
-        print(f"Error Response Status: {response.status_code}")
-        print(f"Error Response Text: {response.text}")
         return f"Error: {response.status_code}, {response.text}"
 
 # Streamlit UI
